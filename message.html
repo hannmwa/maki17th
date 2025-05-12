@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>message ˚ʚ♡ɞ˚</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+    }
+
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    #musicBtn {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 20px;
+      background-color: #ffddf4;
+      color: #333;
+      cursor: pointer;
+      z-index: 3;
+      transition: all 0.3s ease;
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      z-index: 2;
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: opacity 2s ease-in-out;
+    }
+
+    #returnBtn {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      background-color: #ffdbf0;
+      color: #333;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎬 Fullscreen video -->
+  <video id="myVideo" playsinline>
+    <source src="maki bday.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- 🎵 Background music -->
+  <audio id="bgMusic" loop>
+    <source src="[Karaoke] Out Like a Light - The Honeysticks [OH2BFfp-bwE].mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- 🎶 Music start button -->
+  <button id="musicBtn">tap to play! ♡</button>
+
+  <!-- 🖤 Black overlay and return button -->
+  <div id="overlay">
+    <button id="returnBtn" onclick="window.location.href='index.html'">return to home page? ♡</button>
+  </div>
+
+  <script>
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const overlay = document.getElementById('overlay');
+    const returnBtn = document.getElementById('returnBtn');
+    const video = document.getElementById('myVideo');
+
+    musicBtn.addEventListener('click', () => {
+      // Try playing audio
+      bgMusic.play().catch(e => console.log("Audio error:", e));
+      // Try playing video
+      video.play().catch(e => console.log("Video error:", e));
+      // Hide button
+      musicBtn.style.display = 'none';
+    });
+
+    video.addEventListener('ended', () => {
+      overlay.style.opacity = 1;
+      overlay.style.pointerEvents = 'auto';
+
+      setTimeout(() => {
+        returnBtn.style.opacity = 1;
+      }, 2000);
+    });
+  </script>
+
+</body>
+</html>

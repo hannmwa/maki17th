@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>make a wish!🎂</title>
+  <link rel="stylesheet" href="surprise.css" />
+</head>
+<body>
+
+  <!-- Confetti Container -->
+  <div class="confetti-container"></div>
+
+  <div class="fade-container">
+    <img src="cake.png" alt="Birthday Cake" id="cake" />
+    
+    <button id="wishButton">Make a wish!</button>
+    <div id="countdown" class="hidden"></div>
+    <button id="blowButton" class="hidden">blow the candles!</button>
+  </div>
+
+  <audio id="birthdayAudio" src="happy.mp3" autoplay></audio>
+
+  <script>
+  const cake = document.getElementById("cake");
+  const wishButton = document.getElementById("wishButton");
+  const blowButton = document.getElementById("blowButton");
+  const countdown = document.getElementById("countdown");
+  const container = document.querySelector(".fade-container");
+  const audio = document.getElementById("birthdayAudio");
+  let stage = 0;
+
+  window.addEventListener('DOMContentLoaded', () => {
+    audio.play().catch(() => {
+      document.body.addEventListener('click', () => {
+        audio.play();
+      }, { once: true });
+    });
+
+    // Create falling confetti
+    const confettiContainer = document.querySelector('.confetti-container');
+    for (let i = 0; i < 100; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.animationDelay = Math.random() * 3 + 's';
+      confetti.style.backgroundColor = ['#ffc0cb', '#ffff99', '#add8e6', '#ffb6b9'][Math.floor(Math.random() * 4)];
+      confettiContainer.appendChild(confetti);
+    }
+  });
+
+  wishButton.addEventListener("click", () => {
+    wishButton.classList.add("hidden");
+    countdown.classList.remove("hidden");
+
+    let timeLeft = 10;
+    const countdownInterval = setInterval(() => {
+      if (timeLeft > 0) {
+        countdown.textContent = timeLeft;
+        timeLeft--;
+      } else {
+        clearInterval(countdownInterval);
+        countdown.textContent = "";
+        countdown.classList.add("hidden");
+        blowButton.classList.remove("hidden");
+      }
+    }, 1000);
+  });
+
+  blowButton.addEventListener("click", () => {
+    stage++;
+    if (stage === 1) {
+      cake.style.transform = "scale(1.6)";
+      container.style.gap = "60px";
+      blowButton.textContent = "blow harder!!";
+    } else if (stage === 2) {
+      cake.style.transform = "scale(2)";
+      container.style.gap = "80px";
+      blowButton.textContent = "HARDER!!!!";
+    } else if (stage === 3) {
+      cake.style.transform = "scale(2.6)";
+      container.style.gap = "100px";
+      container.classList.add("fade-out");
+      setTimeout(() => {
+        window.location.href = "blow.html";
+      }, 1500);
+    }
+  });
+</script>
+
+</body>
+</html>

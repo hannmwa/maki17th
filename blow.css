@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, #e0f5ff, #7db6eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Confetti */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  animation: fall 5s linear infinite;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* Image */
+.image-container {
+  z-index: 2;
+}
+.blow-image {
+  width: 1000px;
+  opacity: 0;
+  animation: fadeInMove 1s forwards, float 2s ease-in-out infinite;
+}
+@keyframes fadeInMove {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

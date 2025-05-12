@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #e0f5ff, #7db6eb);
+  font-family: 'Segoe UI', cursive;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fade-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+  transition: opacity 1.5s ease, gap 0.5s ease;
+  z-index: 2;
+}
+
+.fade-container.fade-out {
+  opacity: 0;
+}
+
+#cake {
+  width: 350px;
+  transition: transform 0.5s ease;
+}
+
+button {
+  padding: 16px 28px;
+  font-size: 22px;
+  background-color: #ffb6b9;
+  border: none;
+  border-radius: 16px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #f67280;
+  transform: scale(1.07);
+}
+
+button.hidden {
+  display: none;
+}
+
+#countdown {
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+}
+
+audio {
+  display: none;
+}
+
+/* Confetti */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: pink;
+  animation: fall 5s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
