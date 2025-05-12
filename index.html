@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>maki's bday♡</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <img src="makii.jpg" alt="Your Photo" class="profile-pic">
+    <h1 class="title">⋆𐙚₊˚⊹♡</h1>
+    <p class="subtitle">enter the password to continue...</p>
+
+    <input type="password" id="codeInput" readonly placeholder="••••••">
+    
+    <div class="numpad">
+      <button onclick="appendNumber('0')">0</button>
+      <button onclick="appendNumber('1')">1</button>
+      <button onclick="appendNumber('2')">2</button>
+      <button onclick="appendNumber('3')">3</button>
+      <button onclick="appendNumber('4')">4</button>
+      <button onclick="appendNumber('5')">5</button>
+      <button onclick="appendNumber('6')">6</button>
+      <button onclick="appendNumber('7')">7</button>
+      <button onclick="appendNumber('8')">8</button>
+      <button onclick="appendNumber('9')">9</button>
+      <button onclick="clearInput()">⌫</button>
+      <button onclick="checkCode()">✔</button>
+    </div>
+
+    <p id="hintText" class="hint-text"></p>
+  </div>
+
+  <script>
+    let hintShown = false;
+
+    function appendNumber(num) {
+      const input = document.getElementById("codeInput");
+      if (input.value.length < 6) {
+        input.value += num;
+      }
+    }
+
+    function clearInput() {
+      document.getElementById("codeInput").value = '';
+    }
+
+    function checkCode() {
+      const input = document.getElementById("codeInput").value;
+      const hint = document.getElementById("hintText");
+
+      if (input === "051208") {
+        window.location.href = "surprise.html"; // link to next page
+      } else {
+        if (!hintShown) {
+          hint.textContent = "hint: your birthday :)";
+          hintShown = true;
+        }
+        clearInput();
+      }
+    }
+  </script>
+
+</body>
+</html>
