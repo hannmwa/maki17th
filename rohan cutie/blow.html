@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>blow ♡︎</title>
+  <link rel="stylesheet" href="blow.css" />
+</head>
+<body>
+  <!-- Confetti -->
+  <div class="confetti-container"></div>
+
+  <!-- Fading image -->
+  <div class="image-container">
+    <img src="blowcandle.png" alt="Boy blowing candles" class="blow-image" />
+  </div>
+
+  <script>
+    // Create falling confetti
+    const confettiContainer = document.querySelector('.confetti-container');
+    for (let i = 0; i < 100; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.animationDelay = Math.random() * 3 + 's';
+      confetti.style.backgroundColor = ['#ffc0cb', '#ffff99', '#add8e6', '#ffb6b9'][Math.floor(Math.random() * 4)];
+      confettiContainer.appendChild(confetti);
+    }
+
+    // Redirect after 5 seconds
+    setTimeout(() => {
+      document.querySelector('.blow-image').classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = "message.html";
+      }, 1000);
+    }, 5000);
+  </script>
+</body>
+</html>
